@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="695.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <TableView fx:id="TableView" layoutY="189.0" prefHeight="260.0" prefWidth="695.0">
+          <columns>
+              <TableColumn fx:id="idColumn" prefWidth="48.0" text="id" />
+              <TableColumn fx:id="loginColumn" prefWidth="95.0" text="Логин" />
+              <TableColumn fx:id="passwordColumn" prefWidth="146.0" text="Пароль" />
+              <TableColumn fx:id="accessLvlColumn" prefWidth="108.0" text="Уровень доступа" />
+              <TableColumn fx:id="dateOfCreationColumn" prefWidth="158.0" text="Дата создания" />
+              <TableColumn fx:id="dateOfModificationColumn" prefWidth="139.0" text="Дата модификации" />
+          </columns>
+      </TableView>
+<!--      <Button fx:id="exitButton" layoutX="168.0" layoutY="466.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" text="Выход" />
+      <Button fx:id="deleteButton" layoutX="296.0" layoutY="466.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="118.0" text="Удалить" />
+      <Button fx:id="updateButton" layoutX="433.0" layoutY="466.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="118.0" text="Редактировать" />-->
+      <Button fx:id="insertButton" layoutX="570.0" layoutY="466.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" text="Создать" />
+   </children>
+</AnchorPane>
