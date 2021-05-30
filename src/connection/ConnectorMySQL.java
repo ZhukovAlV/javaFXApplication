@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ConnectorMySQL {
     public Connection getConnection() throws IOException {
         Properties props = new Properties();
-        try (FileInputStream in = new FileInputStream ("src\\connection\\database.properties")) {
+        try (FileInputStream in = new FileInputStream ("src\\resources\\database.properties")) {
             props.load(in);
         }
         String url = props.getProperty("url");

@@ -23,28 +23,16 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-<!--                <Label text="Дата создания">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <Label text="Дата модификации">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>-->
             </children>
         </VBox>
         <VBox layoutX="214.0" layoutY="22.0" prefHeight="130.0" prefWidth="332.0" spacing="10.0">
             <children>
                 <TextField fx:id="loginField" />
-                <TextField fx:id="passwordField" />
+                <PasswordField fx:id="passwordField" />
                 <TextField fx:id="accessLvlField" prefHeight="28.0" prefWidth="332.0" />
-<!--                <TextField fx:id="dateOfCreationField" />
-                <TextField fx:id="dateOfModificationField" />-->
             </children>
         </VBox>
-      <Button fx:id="insertUserButton" onAction="#insertUser" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="135.0" text="Ок" />
+      <Button fx:id="insertUserButton" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertUser" prefHeight="36.0" prefWidth="135.0" text="Ок" />
     <!--  <Button layoutX="240.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" text="Отмена" />-->
     </children>
 </AnchorPane>
