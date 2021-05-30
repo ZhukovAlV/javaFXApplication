@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.SecondPane"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddController">
+    <children>
+        <VBox layoutX="26.0" layoutY="22.0" spacing="35.0">
+            <children>
+                <Label text="Логин">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Пароль">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Уровень доступа">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+<!--                <Label text="Дата создания">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Дата модификации">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>-->
+            </children>
+        </VBox>
+        <VBox layoutX="214.0" layoutY="22.0" prefHeight="130.0" prefWidth="332.0" spacing="10.0">
+            <children>
+                <TextField fx:id="loginField" />
+                <TextField fx:id="passwordField" />
+                <TextField fx:id="accessLvlField" prefHeight="28.0" prefWidth="332.0" />
+<!--                <TextField fx:id="dateOfCreationField" />
+                <TextField fx:id="dateOfModificationField" />-->
+            </children>
+        </VBox>
+      <Button fx:id="insertUserButton" onAction="#insertUser" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="135.0" text="Ок" />
+    <!--  <Button layoutX="240.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" text="Отмена" />-->
+    </children>
 </AnchorPane>
