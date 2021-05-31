@@ -71,8 +71,10 @@ public class DAOImpl implements DAO {
             while(rs.next()) {
                 user = new User(rs.getLong("id"),rs.getString("login"),
                         rs.getString("password"),rs.getLong("accesLvl"),
-                        rs.getTimestamp("dateOfCreation").toLocalDateTime(),
-                        rs.getTimestamp("dateOfModification").toLocalDateTime());
+                        (rs.getTimestamp("dateOfCreation") != null) ?
+                                rs.getTimestamp("dateOfCreation").toLocalDateTime() : null,
+                        (rs.getTimestamp("dateOfModification") != null) ?
+                                rs.getTimestamp("dateOfModification").toLocalDateTime() : null);
                 usersList.add(user);
             }
         } catch (Exception e) {

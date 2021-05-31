@@ -2,12 +2,8 @@ package connection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.Properties;
 
 public class ConnectorMySQL {
@@ -19,7 +15,6 @@ public class ConnectorMySQL {
         String url = props.getProperty("url");
         String username = props.getProperty("username");
         String password = props.getProperty("password");
-
 
         try {
             Connection conn = DriverManager.getConnection(url,username,password);
