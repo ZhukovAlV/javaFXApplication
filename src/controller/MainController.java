@@ -102,7 +102,7 @@ public class MainController implements Initializable, DataChangeListener {
 
         // Передаем данные полей юзера в новую сцену
         CrudController controller = loader.getController();
-        controller.setLoginField(new TextField(selectedUser.getLogin()));
+        controller.preloadData(selectedUser);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));

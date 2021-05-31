@@ -3,13 +3,16 @@ package controller;
 import dao.DAO;
 import dao.DAOImpl;
 import entity.User;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +20,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-@Setter
-@Getter
 public class CrudController {
 
     private DAO dao = new DAOImpl();
@@ -40,11 +41,14 @@ public class CrudController {
         stage.close();
     }
 
-   /*  private void editUser(User user) {
+/*     private void editUser(User user) {
        Stage stage = (Stage) insertUserButton.getScene().getWindow();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         dao.insertUserDao(loginField.getText(), passwordField.getText(), Long.parseLong(accessLvlField.getText()), timestamp);
         stage.close();
+    }*/
+
+    public void preloadData(User user) {
+        this.loginField.setText(user.getLogin());
     }
-*/
 }
