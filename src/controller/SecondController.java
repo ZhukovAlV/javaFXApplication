@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 @Setter
-public class CrudController {
+public class SecondController {
 
     private DAO dao = new DAOImpl();
 
@@ -39,6 +39,9 @@ public class CrudController {
     private TextField dateOfModification;
     @FXML
     private Button okButton;
+    @FXML
+    private Button cancelButton;
+
 
     @FXML
     private void insertOrUpdateUser() throws IOException, SQLException {
@@ -62,5 +65,11 @@ public class CrudController {
         accessLvlField.setText(String.valueOf(user.getAccessLvl()));
         dateOfCreation.setText(String.valueOf(user.getDateOfCreation()));
         dateOfModification.setText(String.valueOf(user.getDateOfModification()));
+    }
+
+    @FXML
+    private void cancelButton() throws IOException, SQLException {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 }

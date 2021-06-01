@@ -1,36 +1,26 @@
 package controller;
 
-import com.sun.javafx.util.Utils;
 import dao.DAO;
 import dao.DAOImpl;
 import entity.User;
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import listeners.DataChangeListener;
 import lombok.SneakyThrows;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -53,7 +43,8 @@ public class MainController implements Initializable, DataChangeListener {
     private TableColumn<User, LocalDateTime> dateOfCreationColumn;
     @FXML
     private TableColumn<User, LocalDateTime> dateOfModificationColumn;
-
+    @FXML
+    private Button exitButton;
 
     @SneakyThrows
     @Override
@@ -91,13 +82,14 @@ public class MainController implements Initializable, DataChangeListener {
         stage.show();
     }
 
+    @FXML
     public void editButton() throws IOException {
         // Загрузчик для новой сцены
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/secondPane.fxml"));
         Parent parent = loader.load();
 
         // Передаем данные полей юзера в новую сцену
-        CrudController controller = loader.getController();
+        SecondController controller = loader.getController();
         controller.preloadData(selectedUser);
 
         Stage stage = new Stage();
@@ -109,6 +101,12 @@ public class MainController implements Initializable, DataChangeListener {
     @FXML
     private void deleteButton() throws IOException, SQLException {
         dao.deleteUserDao(selectedUser.getId());
+    }
+
+    @FXML
+    private void exitButton() throws IOException, SQLException {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     @Override
