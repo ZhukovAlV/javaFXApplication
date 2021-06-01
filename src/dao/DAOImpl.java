@@ -146,4 +146,49 @@ public class DAOImpl implements DAO {
         return userList;
     }
 
+    @Override
+    public ObservableList<User> findById(Long id) throws IOException, SQLException {
+        ObservableList<User> userList = FXCollections.observableArrayList();
+
+        String query = "SELECT * FROM user WHERE id = ?";
+        PreparedStatement preparedStatement = connectorMySQL.getConnection().prepareStatement(query);
+        preparedStatement.setLong(1, id);
+
+        try (ResultSet rs = preparedStatement.executeQuery()) {
+            while(rs.next()) {
+                userList.add(new User(rs.getLong("id"),rs.getString("login"),
+                        rs.getString("password"),getAccessLevelDao(rs.getLong("accesLvl")),
+                        (rs.getTimestamp("dateOfCreation") != null) ?
+                                rs.getTimestamp("dateOfCreation").toLocalDateTime() : null,
+                        (rs.getTimestamp("dateOfModification") != null) ?
+                                rs.getTimestamp("dateOfModification").toLocalDateTime() : null));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    @Override
+    public ObservableList<User> findByAccess(AccessLevel accessLevel) throws IOException, SQLException {
+        ObservableList<User> userList = FXCollections.observableArrayList();
+
+        String query = "SELECT * FROM user, access_level WHERE access_level.id = user.accesLvl AND access_level.id = ?";
+        PreparedStatement preparedStatement = connectorMySQL.getConnection().prepareStatement(query);
+        preparedStatement.setLong(1, accessLevel.getId());
+
+        try (ResultSet rs = preparedStatement.executeQuery()) {
+            while(rs.next()) {
+                userList.add(new User(rs.getLong("id"),rs.getString("login"),
+                        rs.getString("password"),getAccessLevelDao(rs.getLong("accesLvl")),
+                        (rs.getTimestamp("dateOfCreation") != null) ?
+                                rs.getTimestamp("dateOfCreation").toLocalDateTime() : null,
+                        (rs.getTimestamp("dateOfModification") != null) ?
+                                rs.getTimestamp("dateOfModification").toLocalDateTime() : null));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
 }

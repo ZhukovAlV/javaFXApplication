@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -35,6 +32,10 @@ public class MainController implements Initializable {
     @FXML
     private TextField findByLogin;
     @FXML
+    private TextField findById;
+    @FXML
+    private ComboBox findByAccess;
+    @FXML
     private TableColumn<User, Long> idColumn;
     @FXML
     private TableColumn<User, String> loginColumn;
@@ -52,13 +53,12 @@ public class MainController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showUsers();
+        showUsers(getUsersList());
+        findByAccess.setItems(dao.getAccessLevelListDao());
         getSelected();
     }
 
-    public void showUsers() throws IOException {
-        ObservableList<User> list = getUsersList();
-
+    public void showUsers(ObservableList<User> list) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -73,10 +73,23 @@ public class MainController implements Initializable {
         return dao.getUsersListDao();
     }
 
-    public ObservableList<User> findByLoginList() throws IOException, SQLException {
-        return dao.findByLogin(findByLogin.getText());
+    public void findByLoginList() throws IOException, SQLException {
+        if (!findByLogin.getText().isEmpty())
+            showUsers(dao.findByLogin(findByLogin.getText()));
+        else showUsers(getUsersList());
     }
 
+    public void findByIdList() throws IOException, SQLException {
+        if (!findById.getText().isEmpty())
+            showUsers(dao.findById(Long.parseLong(findById.getText())));
+        else showUsers(getUsersList());
+    }
+
+    public void findByAccessList() throws IOException, SQLException {
+        if (findByAccess.getValue() != null)
+            showUsers(dao.findByAccess((AccessLevel)findByAccess.getValue()));
+        else showUsers(getUsersList());
+    }
     @FXML
     private void insertButton() throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/view/secondPane.fxml"));
@@ -87,7 +100,7 @@ public class MainController implements Initializable {
         stage.setTitle("Создать нового пользователя");
 
         stage.showAndWait();
-        showUsers();
+        showUsers(getUsersList());
     }
 
     @FXML
@@ -106,7 +119,7 @@ public class MainController implements Initializable {
 
         // Ждем закрытия нового окна и обновляем список в текущем окне
         stage.showAndWait();
-        showUsers();
+        showUsers(getUsersList());
     }
 
     @FXML
@@ -123,11 +136,11 @@ public class MainController implements Initializable {
     @FXML
     private void deleteButton() throws IOException, SQLException {
         dao.deleteUserDao(selectedUser.getId());
-        showUsers();
+        showUsers(getUsersList());
     }
 
     @FXML
-    private void exitButton() throws IOException, SQLException {
+    private void exitButton() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }

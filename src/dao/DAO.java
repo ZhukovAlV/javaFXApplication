@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public interface DAO {
 
@@ -18,5 +17,6 @@ public interface DAO {
     void deleteUserDao(Long id) throws IOException, SQLException;
     ObservableList<AccessLevel> getAccessLevelListDao() throws IOException;
     ObservableList<User> findByLogin(String login) throws IOException, SQLException;
-
+    ObservableList<User> findById(Long id) throws IOException, SQLException;
+    ObservableList<User> findByAccess(AccessLevel accessLevel) throws IOException, SQLException;
 }
