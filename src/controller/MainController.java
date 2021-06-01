@@ -15,7 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import listeners.DataChangeListener;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, DataChangeListener {
+public class MainController implements Initializable {
 
     DAO dao = new DAOImpl();
     User selectedUser = null;
@@ -50,7 +49,6 @@ public class MainController implements Initializable, DataChangeListener {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showUsers();
-        onDataChanged();
         getSelected();
     }
 
@@ -79,7 +77,9 @@ public class MainController implements Initializable, DataChangeListener {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Создать нового пользователя");
-        stage.show();
+
+        stage.showAndWait();
+        showUsers();
     }
 
     @FXML
@@ -95,30 +95,22 @@ public class MainController implements Initializable, DataChangeListener {
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.setTitle("Редактировать рользователя");
-        stage.show();
+
+        // Ждем закрытия нового окна и обновляем список в текущем окне
+        stage.showAndWait();
+        showUsers();
     }
 
     @FXML
     private void deleteButton() throws IOException, SQLException {
         dao.deleteUserDao(selectedUser.getId());
+        showUsers();
     }
 
     @FXML
     private void exitButton() throws IOException, SQLException {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
-    }
-
-    @Override
-    public void onDataChanged() throws IOException {
-        ObservableList<User> ob = getUsersList();
-        ob.addListener((ListChangeListener<User>) change -> {
-            try {
-                showUsers();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @FXML
