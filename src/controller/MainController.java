@@ -102,6 +102,17 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    private void helpInfo() throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/info.fxml"));
+
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Информация");
+        stage.show();
+    }
+
+    @FXML
     private void deleteButton() throws IOException, SQLException {
         dao.deleteUserDao(selectedUser.getId());
         showUsers();
