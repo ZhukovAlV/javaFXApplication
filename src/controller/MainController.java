@@ -2,6 +2,7 @@ package controller;
 
 import dao.DAO;
 import dao.DAOImpl;
+import entity.AccessLevel;
 import entity.User;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -37,7 +38,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<User, String> passwordColumn;
     @FXML
-    private TableColumn<User, Long> accessLvlColumn;
+    private TableColumn<User, AccessLevel> accessLvlColumn;
     @FXML
     private TableColumn<User, LocalDateTime> dateOfCreationColumn;
     @FXML
@@ -55,12 +56,12 @@ public class MainController implements Initializable {
     public void showUsers() throws IOException {
         ObservableList<User> list = getUsersList();
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<User,Long>("id"));
-        loginColumn.setCellValueFactory(new PropertyValueFactory<User,String>("login"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
-        accessLvlColumn.setCellValueFactory(new PropertyValueFactory<User,Long>("accessLvl"));
-        dateOfCreationColumn.setCellValueFactory(new PropertyValueFactory<User, LocalDateTime>("dateOfCreation"));
-        dateOfModificationColumn.setCellValueFactory(new PropertyValueFactory<User, LocalDateTime>("dateOfModification"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        accessLvlColumn.setCellValueFactory(new PropertyValueFactory<>("accessLvl"));
+        dateOfCreationColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfCreation"));
+        dateOfModificationColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfModification"));
 
         tableView.setItems(list);
     }

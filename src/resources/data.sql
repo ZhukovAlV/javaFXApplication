@@ -16,3 +16,20 @@ VALUES
 
 SELECT *
 FROM user
+
+
+DROP TABLE access_level;
+
+CREATE TABLE access_level (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL
+    )
+
+INSERT INTO access_level (id, title)
+VALUES
+(1, 'Admin'),
+(2, 'Tester'),
+(3, 'User')
+
+SELECT *
+FROM access_level

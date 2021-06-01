@@ -12,7 +12,7 @@ public class User {
     private long id;
     private String login;
     private String password;
-    private long accessLvl;
+    private AccessLevel accessLvl;
     private LocalDateTime dateOfCreation;
     private LocalDateTime dateOfModification;
 }

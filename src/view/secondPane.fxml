@@ -45,7 +45,7 @@
                 <TextField fx:id="idField" disable="true" />
                 <TextField fx:id="loginField" />
                 <PasswordField fx:id="passwordField" />
-                <TextField fx:id="accessLvlField" />
+                <ComboBox fx:id="accessLvlField" />
                 <TextField fx:id="dateOfCreation" disable="true" />
                 <TextField fx:id="dateOfModification" disable="true" />
             </children>
