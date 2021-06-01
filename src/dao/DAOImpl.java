@@ -4,11 +4,9 @@ import connection.ConnectorMySQL;
 import entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.extern.log4j.Log4j;
 
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDateTime;
 
 //@Log4j
 public class DAOImpl implements DAO {
@@ -32,6 +30,26 @@ public class DAOImpl implements DAO {
         preparedStatement.setString(2, password);
         preparedStatement.setLong(3, accesLvl);
         preparedStatement.setTimestamp(4, dateOfCreation);
+
+        preparedStatement.executeUpdate();
+    }
+
+    @Override
+    public void updateUserDao(Long id, String login, String password, Long accesLvl, Timestamp dateOfModification) throws IOException, SQLException {
+        String query =
+                "UPDATE user " +
+                "SET login = ?," +
+                "password = ?," +
+                "accesLvl = ?," +
+                "dateOfModification = ?" +
+                "WHERE id = ?";
+
+        PreparedStatement preparedStatement = connectorMySQL.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, login);
+        preparedStatement.setString(2, password);
+        preparedStatement.setLong(3, accesLvl);
+        preparedStatement.setTimestamp(4, dateOfModification);
+        preparedStatement.setLong(5, id);
 
         preparedStatement.executeUpdate();
     }

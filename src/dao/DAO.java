@@ -12,5 +12,6 @@ public interface DAO {
 
     void executeQuery(String query);
     void insertUserDao(String login, String password, Long accesLvl, Timestamp dateOfCreation) throws IOException, SQLException;
+    void updateUserDao(Long id, String login, String password, Long accesLvl, Timestamp dateOfModification) throws IOException, SQLException;
     ObservableList<User> getUsersListDao() throws IOException;
 }

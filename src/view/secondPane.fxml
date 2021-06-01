@@ -8,6 +8,11 @@
     <children>
         <VBox layoutX="26.0" layoutY="22.0" spacing="35.0">
             <children>
+                <Label text="№">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
                 <Label text="Логин">
                     <font>
                         <Font size="14.0" />
@@ -23,16 +28,29 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
+                <Label text="Дата создания">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Дата модификации">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
             </children>
         </VBox>
         <VBox layoutX="214.0" layoutY="22.0" prefHeight="130.0" prefWidth="332.0" spacing="10.0">
             <children>
+                <TextField fx:id="idField" disable="true" />
                 <TextField fx:id="loginField" />
                 <PasswordField fx:id="passwordField" />
-                <TextField fx:id="accessLvlField" prefHeight="28.0" prefWidth="332.0" />
+                <TextField fx:id="accessLvlField" />
+                <TextField fx:id="dateOfCreation" disable="true" />
+                <TextField fx:id="dateOfModification" disable="true" />
             </children>
         </VBox>
-      <Button fx:id="insertUserButton" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertUser" prefHeight="36.0" prefWidth="135.0" text="Ок" />
+      <Button fx:id="okButton" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertOrUpdateUser" prefHeight="36.0" prefWidth="135.0" text="Ок" />
     <!--  <Button layoutX="240.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" text="Отмена" />-->
     </children>
 </AnchorPane>

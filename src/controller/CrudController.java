@@ -20,10 +20,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+@Setter
 public class CrudController {
 
     private DAO dao = new DAOImpl();
 
+    @FXML
+    private TextField idField;
     @FXML
     private TextField loginField;
     @FXML
@@ -31,24 +34,33 @@ public class CrudController {
     @FXML
     private TextField accessLvlField;
     @FXML
-    private Button insertUserButton;
+    private TextField dateOfCreation;
+    @FXML
+    private TextField dateOfModification;
+    @FXML
+    private Button okButton;
 
     @FXML
-    private void insertUser() throws IOException, SQLException {
-        Stage stage = (Stage) insertUserButton.getScene().getWindow();
+    private void insertOrUpdateUser() throws IOException, SQLException {
+        Stage stage = (Stage) okButton.getScene().getWindow();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        dao.insertUserDao(loginField.getText(), passwordField.getText(), Long.parseLong(accessLvlField.getText()), timestamp);
+
+        if (idField.getText().isEmpty()) {
+            dao.insertUserDao(loginField.getText(), passwordField.getText(), Long.parseLong(accessLvlField.getText()), timestamp);
+        } else {
+            dao.updateUserDao(Long.parseLong(idField.getText()), loginField.getText(), passwordField.getText(), Long.parseLong(accessLvlField.getText()), timestamp);
+        }
+
         stage.close();
     }
 
-/*     private void editUser(User user) {
-       Stage stage = (Stage) insertUserButton.getScene().getWindow();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        dao.insertUserDao(loginField.getText(), passwordField.getText(), Long.parseLong(accessLvlField.getText()), timestamp);
-        stage.close();
-    }*/
 
     public void preloadData(User user) {
-        this.loginField.setText(user.getLogin());
+        idField.setText(String.valueOf(user.getId()));
+        loginField.setText(user.getLogin());
+        passwordField.setText(user.getPassword());
+        accessLvlField.setText(String.valueOf(user.getAccessLvl()));
+        dateOfCreation.setText(String.valueOf(user.getDateOfCreation()));
+        dateOfModification.setText(String.valueOf(user.getDateOfModification()));
     }
 }
