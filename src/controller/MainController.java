@@ -29,10 +29,7 @@ import lombok.SneakyThrows;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -56,8 +53,7 @@ public class MainController implements Initializable, DataChangeListener {
     private TableColumn<User, LocalDateTime> dateOfCreationColumn;
     @FXML
     private TableColumn<User, LocalDateTime> dateOfModificationColumn;
-    @FXML
-    private Button insertButton;
+
 
     @SneakyThrows
     @Override
@@ -108,6 +104,11 @@ public class MainController implements Initializable, DataChangeListener {
         stage.setScene(new Scene(parent));
         stage.setTitle("Редактировать рользователя");
         stage.show();
+    }
+
+    @FXML
+    private void deleteButton() throws IOException, SQLException {
+        dao.deleteUserDao(selectedUser.getId());
     }
 
     @Override

@@ -54,29 +54,15 @@ public class DAOImpl implements DAO {
         preparedStatement.executeUpdate();
     }
 
+    @Override
+    public void deleteUserDao(Long id) throws IOException, SQLException {
+        String query = "DELETE FROM user WHERE id = ?";
 
-/*    public static void deleteUser(int id) throws SQLException, IOException, URISyntaxException {
-        try (Connection conn = getConnection()) {
-            String sql = "DELETE FROM usersformyapp WHERE userID = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+        PreparedStatement preparedStatement = connectorMySQL.getConnection().prepareStatement(query);
+        preparedStatement.setLong(1, id);
 
-            preparedStatement.executeUpdate();
-        }
-    }*/
-
-/*    public static void updateUser(User user) throws SQLException, IOException {
-        try (Connection conn = getConnection()) {
-            String sql = "UPDATE usersformyapp SET email = ?, firstName = ?, lastName = ? WHERE userID = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getFirstName());
-            preparedStatement.setString(3, user.getLastName());
-            preparedStatement.setInt(4, user.getId());
-
-            preparedStatement.executeUpdate();
-        }
-    }*/
+        preparedStatement.executeUpdate();
+    }
 
     public ObservableList<User> getUsersListDao() throws IOException {
         ObservableList<User> usersList = FXCollections.observableArrayList();

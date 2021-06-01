@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 public interface DAO {
 
     void executeQuery(String query);
+    ObservableList<User> getUsersListDao() throws IOException;
     void insertUserDao(String login, String password, Long accesLvl, Timestamp dateOfCreation) throws IOException, SQLException;
     void updateUserDao(Long id, String login, String password, Long accesLvl, Timestamp dateOfModification) throws IOException, SQLException;
-    ObservableList<User> getUsersListDao() throws IOException;
+    void deleteUserDao(Long id) throws IOException, SQLException;
+
 }
