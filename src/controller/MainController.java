@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -31,6 +32,8 @@ public class MainController implements Initializable {
 
     @FXML
     private TableView<User> tableView;
+    @FXML
+    private TextField findByLogin;
     @FXML
     private TableColumn<User, Long> idColumn;
     @FXML
@@ -68,6 +71,10 @@ public class MainController implements Initializable {
 
     public ObservableList<User> getUsersList() throws IOException {
         return dao.getUsersListDao();
+    }
+
+    public ObservableList<User> findByLoginList() throws IOException, SQLException {
+        return dao.findByLogin(findByLogin.getText());
     }
 
     @FXML

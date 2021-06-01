@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SecondController">
+<AnchorPane prefHeight="436.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SecondController">
     <children>
         <VBox layoutX="26.0" layoutY="22.0" spacing="35.0">
             <children>
@@ -40,7 +40,7 @@
                 </Label>
             </children>
         </VBox>
-        <VBox layoutX="214.0" layoutY="22.0" prefHeight="130.0" prefWidth="332.0" spacing="10.0">
+        <VBox layoutX="214.0" layoutY="22.0" prefHeight="130.0" prefWidth="332.0" spacing="35.0">
             <children>
                 <TextField fx:id="idField" disable="true" />
                 <TextField fx:id="loginField" />
@@ -50,7 +50,7 @@
                 <TextField fx:id="dateOfModification" disable="true" />
             </children>
         </VBox>
-      <Button fx:id="okButton" layoutX="436.0" layoutY="331.0" mnemonicParsing="false" onAction="#insertOrUpdateUser" prefHeight="36.0" prefWidth="135.0" text="Ок" />
-      <Button fx:id="cancelButton" onAction="#cancelButton" layoutX="240.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" text="Отмена" />
+      <Button fx:id="okButton" layoutX="436.0" layoutY="383.0" mnemonicParsing="false" onAction="#insertOrUpdateUser" prefHeight="36.0" prefWidth="135.0" text="Ок" />
+      <Button fx:id="cancelButton" layoutX="232.0" layoutY="383.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="36.0" prefWidth="160.0" text="Отмена" />
     </children>
 </AnchorPane>

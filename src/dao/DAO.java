@@ -17,5 +17,6 @@ public interface DAO {
     void updateUserDao(Long id, String login, String password, Long accesLvl, Timestamp dateOfModification) throws IOException, SQLException;
     void deleteUserDao(Long id) throws IOException, SQLException;
     ObservableList<AccessLevel> getAccessLevelListDao() throws IOException;
+    ObservableList<User> findByLogin(String login) throws IOException, SQLException;
 
 }

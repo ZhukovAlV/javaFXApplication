@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <TableView fx:id="tableView" layoutY="189.0" prefHeight="260.0" prefWidth="695.0">
+      <TableView fx:id="tableView" layoutY="115.0" prefHeight="260.0" prefWidth="695.0">
           <columns>
               <TableColumn fx:id="idColumn" prefWidth="48.0" text="id" />
               <TableColumn fx:id="loginColumn" prefWidth="95.0" text="Логин" />
@@ -15,10 +15,10 @@
               <TableColumn fx:id="dateOfModificationColumn" prefWidth="139.0" text="Дата модификации" />
           </columns>
       </TableView>
-      <Button fx:id="exitButton" layoutX="168.0" layoutY="466.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="36.0" prefWidth="111.0" text="Выход" />
-      <Button fx:id="deleteButton" layoutX="296.0" layoutY="466.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="36.0" prefWidth="118.0" text="Удалить" />
-      <Button fx:id="editButton" layoutX="433.0" layoutY="466.0" mnemonicParsing="false" onAction="#editButton" prefHeight="36.0" prefWidth="118.0" text="Редактировать" />
-      <Button fx:id="insertButton" layoutX="570.0" layoutY="466.0" mnemonicParsing="false" onAction="#insertButton" prefHeight="36.0" prefWidth="111.0" text="Создать" />
+      <Button fx:id="exitButton" layoutX="168.0" layoutY="395.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="36.0" prefWidth="111.0" text="Выход" />
+      <Button fx:id="deleteButton" layoutX="296.0" layoutY="395.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="36.0" prefWidth="118.0" text="Удалить" />
+      <Button fx:id="editButton" layoutX="434.0" layoutY="395.0" mnemonicParsing="false" onAction="#editButton" prefHeight="36.0" prefWidth="118.0" text="Редактировать" />
+      <Button fx:id="insertButton" layoutX="571.0" layoutY="395.0" mnemonicParsing="false" onAction="#insertButton" prefHeight="36.0" prefWidth="111.0" text="Создать" />
       <MenuBar prefHeight="25.0" prefWidth="695.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
@@ -33,5 +33,28 @@
           </Menu>
         </menus>
       </MenuBar>
+      <GridPane layoutX="35.0" layoutY="25.0" prefHeight="90.0" prefWidth="591.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="16.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="39.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="106.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="190.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="findByLogin" onAction="#findByLoginList" prefHeight="25.0" prefWidth="203.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField prefHeight="25.0" prefWidth="445.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label contentDisplay="RIGHT" text="id:" textAlignment="RIGHT" GridPane.rowIndex="1" />
+            <Label contentDisplay="RIGHT" prefHeight="17.0" prefWidth="46.0" text="Логин:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label contentDisplay="RIGHT" text="Уровень доступа:" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
