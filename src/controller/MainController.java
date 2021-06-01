@@ -49,6 +49,10 @@ public class MainController implements Initializable {
     private TableColumn<User, LocalDateTime> dateOfModificationColumn;
     @FXML
     private Button exitButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
 
     @SneakyThrows
     @Override
@@ -56,6 +60,8 @@ public class MainController implements Initializable {
         showUsers(getUsersList());
         findByAccess.setItems(dao.getAccessLevelListDao());
         getSelected();
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
     }
 
     public void showUsers(ObservableList<User> list) {
@@ -77,18 +83,24 @@ public class MainController implements Initializable {
         if (!findByLogin.getText().isEmpty())
             showUsers(dao.findByLogin(findByLogin.getText()));
         else showUsers(getUsersList());
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
     }
 
     public void findByIdList() throws IOException, SQLException {
         if (!findById.getText().isEmpty())
             showUsers(dao.findById(Long.parseLong(findById.getText())));
         else showUsers(getUsersList());
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
     }
 
     public void findByAccessList() throws IOException, SQLException {
         if (findByAccess.getValue() != null)
             showUsers(dao.findByAccess((AccessLevel)findByAccess.getValue()));
         else showUsers(getUsersList());
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
     }
     @FXML
     private void insertButton() throws IOException {
@@ -149,6 +161,8 @@ public class MainController implements Initializable {
     public void getSelected() {
         tableView.setOnMouseClicked(t -> {
             selectedUser = tableView.getSelectionModel().getSelectedItem();
+            editButton.setVisible(true);
+            deleteButton.setVisible(true);
         });
     }
 }
